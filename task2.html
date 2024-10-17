@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theme Color Selector</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+            transition: background-color 0.5s;
+        }
+        select {
+            font-size: 1.2em;
+            padding: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Select Your Theme Color</h1>
+    <select id="themeSelector">
+        <option value="">--Choose a color--</option>
+        <option value="#ffffff">White</option>
+        <option value="#f8061c">Light Red</option>
+        <option value="#0af806 ">Light Green</option>
+        <option value="#065af8">Light Blue</option>
+        <option value="#f1f806">Light Yellow</option>
+        <option value="#ff6347">Light Orange</option>
+    </select>
+
+    <script>
+        // Function to set the background color
+        function setBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+            localStorage.setItem('themeColor', color); // Save the color in localStorage
+        }
+
+        // Load the saved theme color from localStorage
+        window.onload = function() {
+            const savedColor = localStorage.getItem('themeColor');
+            if (savedColor) {
+                setBackgroundColor(savedColor);
+                document.getElementById('themeSelector').value = savedColor; // Set the selected value
+            }
+        };
+
+        // Event listener for the dropdown
+        document.getElementById('themeSelector').addEventListener('change', function() {
+            const selectedColor = this.value;
+            if (selectedColor) {
+                setBackgroundColor(selectedColor);
+            }
+        });
+    </script>
+
+</body>
+</html>

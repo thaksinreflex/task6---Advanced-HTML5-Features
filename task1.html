@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Preferences - Theme Color</title>
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            transition: background-color 0.5s; /* Smooth transition for background color change */
+        }
+        select {
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Select Your Theme Color</h1>
+    <select id="colorPicker">
+        <option value="#ffffff">White</option>
+        <option value="#f8061c">Light Red</option>
+        <option value="#0af806 ">Light Green</option>
+        <option value="#065af8">Light Blue</option>
+        <option value="#f1f806">Light Yellow</option>
+        <option value="#ff6347">Light Orange</option>
+    </select>
+
+    <script>
+        // Function to apply the saved theme color
+        function applySavedTheme() {
+            const savedColor = localStorage.getItem('themeColor');
+            if (savedColor) {
+                document.body.style.backgroundColor = savedColor;
+                document.getElementById('colorPicker').value = savedColor; // Set the select to the saved color
+            }
+        }
+
+        // Function to save the selected theme color to localStorage
+        function saveThemeColor() {
+            const selectedColor = document.getElementById('colorPicker').value;
+            document.body.style.backgroundColor = selectedColor;
+            localStorage.setItem('themeColor', selectedColor); // Save the selected color
+        }
+
+        // Event listener for the color picker
+        document.getElementById('colorPicker').addEventListener('change', saveThemeColor);
+
+        // Apply the saved theme on page load
+        applySavedTheme();
+    </script>
+
+</body>
+</html>
